@@ -6,7 +6,7 @@
 
 # AutoIT-Scripts
 
-This repo contains useful AutoIT-Scripts.
+This repository contains useful AutoIT-Scripts.
 
 
 #### Contents:
