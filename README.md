@@ -1,8 +1,8 @@
   
-<a href="https://github.com/htcfreek/AutoIT-Scripts"><img src="https://img.shields.io/github/release/htcfreek/AutoIT-Scripts" /></a> <a href="https://github.com/htcfreek/AutoIT-Scripts/releases/latest"><img src="https://img.shields.io/github/downloads/htcfreek/AutoIT-Scripts/latest" /></a> <a href="LICENSE.md"><img src="https://img.shields.io/github/license/htcfreek/AutoIT-Scripts" /></a>
+<a href="https://github.com/htcfreek/autoit-scripts"><img src="https://img.shields.io/github/release/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/releases/latest"><img src="https://img.shields.io/github/downloads/htcfreek/autoit-scripts/total?label=Downloads" /></a> <a href="LICENSE.md"><img src="https://img.shields.io/github/license/htcfreek/autoit-scripts" /></a>
 
 
-<img src="https://img.shields.io/github/stars/htcfreek/AutoIT-Scripts" /> <img src="https://img.shields.io/github/watchers/htcfreek/AutoIT-Scripts" /> <img src="https://img.shields.io/github/forks/htcfreek/AutoIT-Scripts" />
+<img src="https://img.shields.io/github/stars/htcfreek/autoit-scripts" /> <img src="https://img.shields.io/github/watchers/htcfreek/autoit-scripts" /> <img src="https://img.shields.io/github/forks/htcfreek/autoit-scripts" />
 
 # AutoIT-Scripts
 
