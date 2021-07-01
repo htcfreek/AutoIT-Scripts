@@ -1,0 +1,5 @@
+# Release Folder content
+/release/*
+
+# Allow the <dummyfile> to upload empty folders
+!dummyfile
