@@ -14,6 +14,11 @@ This repository contains useful AutoIT-Scripts.
 /src/Readme.txt               :   Readme.txt which will be included in release.
 ```
 
+### Scripts:
+```
+/src/GetDiskInfoFromWmi	: Function to read the disk information form WMI.
+```
+
 ## Download
 Download the files form [here](http://github.com/htcfreek/AutoIT-Scripts/release/latest).
   
