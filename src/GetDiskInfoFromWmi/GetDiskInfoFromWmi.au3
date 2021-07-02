@@ -1,11 +1,11 @@
 ;GetDiskInfoFromWmi.au3
 
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeader = 1)
-	; Name: _GetDiskInfoFromWmi
-	; Author: htcfreek (Heiko) - https://github.com/htcfreek/AutoIt-Scripts
+	; Name: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
+	; Author: htcfreek (Heiko) - https://github.com/htcfreek
 	; Version: 1.2
 	; License: GNU LGPLv3
-	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header rowß
+	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header rows.
 	; Output parameter: none
 	; Required includes: <Array.au3>
 	
@@ -33,20 +33,20 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 		; Get Disks
 		Local $oPhysicalDisks = $oWmiInstance.ExecQuery('Select * from Win32_DiskDrive')
 		For $oDisk In $oPhysicalDisks
-			; Add Disk-Data to Array
+			; Add Disk data to Array
 			Local $iDisk = $oDisk.Index
 			Local $sNewDisk = $iDisk & "||" & $oDisk.DeviceID & "||" & $oDisk.Model & "||" & $oDisk.Size & "||" & $oDisk.Partitions & "||" & "<DiskInitStyle>" & "||" & False
 			_ArrayAdd($aDisks, $sNewDisk, 0, "||")
 			
-			;Get Partitions
+			; Get Partitions
 			Local $oPartitions = $oWmiInstance.ExecQuery("ASSOCIATORS OF {Win32_DiskDrive.DeviceID='" & $oDisk.DeviceID & "'} WHERE AssocClass = Win32_DiskDriveToDiskPartition")
 			For $oPartition In $oPartitions
-				; Add Part data to Array
+				; Add Partition data to Array
 				Local $iPartition = $oPartition.Index
 				Local $sNewPart = $iDisk & "||" & $iPartition & "||" & $oPartition.DeviceID & "||" & $oPartition.Type & "||" & $oPartition.PrimaryPartition & "||" & $oPartition.BootPartition & "||" & "" & "||" & "" & "||" & $oPartition.Size & "||" & "" & "||" & "" & "||" & False
 				_ArrayAdd($aPartitions, $sNewPart, 0, "||")
 				
-				; Set DiskIniStyle
+				; Set DiskInitStyle
 				if StringRegExp ( $oPartition.Type, "^GPT.*") Then
 					$aDisks[$iDiskArrayCount][5] = "GPT"
 				Else 
@@ -56,14 +56,14 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 				; Get LogicalDiks
 				Local $oLogicalDisks = $oWmiInstance.ExecQuery("ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" & $oPartition.DeviceID & "'} WHERE AssocClass = Win32_LogicalDiskToPartition")
 				For $oLogicalDisk In $oLogicalDisks
-					;Add logical disk data to array
+					; Add logical disk data to array
 					$aPartitions[$iPartArrayCount][6] = $oLogicalDisk.DeviceID
 					$aPartitions[$iPartArrayCount][7] = $oLogicalDisk.VolumeName
 					$aPartitions[$iPartArrayCount][8] = $oLogicalDisk.Size ; Value of LogicalDisk.Size is different to Size of DiskPartiton.Size!!
 					$aPartitions[$iPartArrayCount][9] = ($oLogicalDisk.Size - $oLogicalDisk.FreeSpace)
 					$aPartitions[$iPartArrayCount][10] = $oLogicalDisk.FreeSpace
 					
-					;Detect SystemBootDisk 
+					; Detect SystemBootDisk 
 					if $oLogicalDisk.DeviceID = Envget("SystemDrive") Then
 						$aDisks[$iDiskArrayCount][6] = True
 						$aPartitions[$iPartArrayCount][11] = True
@@ -79,7 +79,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 		Next
 	EndIf
 	
-	;Return Data
+	; Return Data
 	$aDiskList = $aDisks
 	$aPrtitionList =  $aPartitions
 EndFunc   ;==>_GetDiskInfoFromWmi
