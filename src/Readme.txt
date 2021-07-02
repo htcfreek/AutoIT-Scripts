@@ -13,7 +13,7 @@ Download the files form this page: http://github.com/htcfreek/AutoIT-Scripts/rel
   
 Usage:
 Please download the release file from this repo and use the scripts you want.
-Attention: You have to provide the license file and the source files along with your release!!
+Attention: You have to provide the license file and the source code along with your release!!
 
 
 LEGAL NOTES
