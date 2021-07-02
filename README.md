@@ -16,7 +16,8 @@ This repository contains useful AutoIT-Scripts.
 Download the files form [here](http://github.com/htcfreek/AutoIT-Scripts/release/latest).
   
 ## Usage
-To use download trhe release file from this repo and use the scripts you want.
+Please download the release file from this repo and use the scripts you want.
+Attention: You have to provide the license file and the source files along with your release!!
 
 <!--
 # CREDITS
