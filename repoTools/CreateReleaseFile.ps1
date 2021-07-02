@@ -2,7 +2,7 @@
 # See the LICENSE file in the project root for more information.
 
 # Name: CreateReleaseFile.ps1
-# Version: 1.0
+# Version: 1.1
 # Description: Script to create the release file.
 # Author: htcfreek (Heiko) - https://github.com/htcfreek
 # Parameter: [String]$ReleaseName, [String]$ReleaseVersion, [[Switch]$NoHashCalculation=$False]
