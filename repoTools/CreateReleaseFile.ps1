@@ -24,7 +24,7 @@ Param(
 [String]$ReleaseDir="\release"
 [String]$OutFileName="$($ReleaseName)_v$($ReleaseVersion).zip"
 [String[]]$CompressFiles = @(
-    "$($RepoDir)$($SrcDir)\*.*",
+    "$($RepoDir)$($SrcDir)\*",
     "$($RepoDir)\LICENSE.md",
     "$($RepoDir)\DISCLAIMER.md"
 )
