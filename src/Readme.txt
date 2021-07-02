@@ -5,10 +5,6 @@
 
 This repository contains useful AutoIT-Scripts.
 
-Contents:
-/src/*                        :   Directory including the AutoIt-Scripts files.
-/src/Readme.txt               :   Readme.txt which will be included in release.
-
 Scripts:
 /src/GetDiskInfoFromWmi	: Function to read the disk information form WMI.
 
