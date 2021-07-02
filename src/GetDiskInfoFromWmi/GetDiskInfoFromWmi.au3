@@ -11,17 +11,17 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 	
 	
 	; Initialize function wide vars
-	Local $aDisks[0][7]
-	Local $aPartitions[0][12]
+	Local $aDisks[0][12]
+	Local $aPartitions[0][13]
 	Local $iDiskArrayCount = 0 ; Initialize counter to write some disk data later in correct array row. 
 	Local $iPartArrayCount = 0 ; Initialize counter to write partition data later in correct array row. 
 
 	
 	; Add Array header
 	if ($bAddTableHeader =  1) Then
-		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskModel" & "||" & "DiskSize" & "||" & "DiskPartitionCount" & "||" & "DiskInitType" & "||" & "SystemIsBootedFromDisk"
+		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfacetype" & "||" & "DiskMediatype" & "||" & "DiskSerialnumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemRoot)"
 		_ArrayAdd($aDisks, $sDiskHeader, 0, "||")
-		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "SystemIsBootedFromPartition"
+		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFilesystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemRoot"
 		_ArrayAdd($aPartitions, $sPartitionHeader, 0, "||")
 		$iDiskArrayCount += 1
 		$iPartArrayCount += 1
@@ -35,7 +35,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 		For $oDisk In $oPhysicalDisks
 			; Add Disk data to Array
 			Local $iDisk = $oDisk.Index
-			Local $sNewDisk = $iDisk & "||" & $oDisk.DeviceID & "||" & $oDisk.Model & "||" & $oDisk.Size & "||" & $oDisk.Partitions & "||" & "<DiskInitStyle>" & "||" & False
+			Local $sNewDisk = $iDisk & "||" & $oDisk.DeviceID & "||" & $oDisk.Manufacturer & "||" & $oDisk.Model & "||" & $oDisk.Interfacetype & "||" & $oDisk.Mediatype & "||" & $oDisk.Serialnumber & "||" & $oDisk.Status & "||" & $oDisk.Size & "||" & "<DiskInitStyle>" & "||" & $oDisk.Partitions & "||" & False
 			_ArrayAdd($aDisks, $sNewDisk, 0, "||")
 			
 			; Get Partitions
@@ -43,14 +43,14 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 			For $oPartition In $oPartitions
 				; Add Partition data to Array
 				Local $iPartition = $oPartition.Index
-				Local $sNewPart = $iDisk & "||" & $iPartition & "||" & $oPartition.DeviceID & "||" & $oPartition.Type & "||" & $oPartition.PrimaryPartition & "||" & $oPartition.BootPartition & "||" & "" & "||" & "" & "||" & $oPartition.Size & "||" & "" & "||" & "" & "||" & False
+				Local $sNewPart = $iDisk & "||" & $iPartition & "||" & $oPartition.DeviceID & "||" & $oPartition.Type & "||" & $oPartition.PrimaryPartition & "||" & $oPartition.BootPartition & "||" & "" & "||" & "" & "||" & "" & "||" & $oPartition.Size & "||" & "" & "||" & "" & "||" & False
 				_ArrayAdd($aPartitions, $sNewPart, 0, "||")
 				
 				; Set DiskInitStyle
 				if StringRegExp ( $oPartition.Type, "^GPT.*") Then
-					$aDisks[$iDiskArrayCount][5] = "GPT"
+					$aDisks[$iDiskArrayCount][9] = "GPT"
 				Else 
-					$aDisks[$iDiskArrayCount][5] = "MBR"
+					$aDisks[$iDiskArrayCount][9] = "MBR"
 				EndIf
 				
 				; Get LogicalDiks
@@ -59,14 +59,15 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 					; Add logical disk data to array
 					$aPartitions[$iPartArrayCount][6] = $oLogicalDisk.DeviceID
 					$aPartitions[$iPartArrayCount][7] = $oLogicalDisk.VolumeName
-					$aPartitions[$iPartArrayCount][8] = $oLogicalDisk.Size ; Value of LogicalDisk.Size is different to Size of DiskPartiton.Size!!
-					$aPartitions[$iPartArrayCount][9] = ($oLogicalDisk.Size - $oLogicalDisk.FreeSpace)
-					$aPartitions[$iPartArrayCount][10] = $oLogicalDisk.FreeSpace
+					$aPartitions[$iPartArrayCount][8] = $oLogicalDisk.Filesystem
+					$aPartitions[$iPartArrayCount][9] = $oLogicalDisk.Size ; Value of LogicalDisk.Size is different to Size of DiskPartiton.Size!!
+					$aPartitions[$iPartArrayCount][10] = ($oLogicalDisk.Size - $oLogicalDisk.FreeSpace)
+					$aPartitions[$iPartArrayCount][11] = $oLogicalDisk.FreeSpace
 					
 					; Detect SystemBootDisk 
 					if $oLogicalDisk.DeviceID = Envget("SystemDrive") Then
-						$aDisks[$iDiskArrayCount][6] = True
-						$aPartitions[$iPartArrayCount][11] = True
+						$aDisks[$iDiskArrayCount][11] = True
+						$aPartitions[$iPartArrayCount][12] = True
 					EndIf
 				Next
 				
