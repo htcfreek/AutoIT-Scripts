@@ -1,12 +1,9 @@
 ;GetDiskInfoFromWmi.au3
 
-#include <Array.au3>
-
-
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeader = 1)
 	; Name: _GetDiskInfoFromWmi
 	; Author: htcfreek (Heiko) - https://github.com/htcfreek/AutoIt-Scripts
-	; Version: 1.0
+	; Version: 1.2
 	; License: GNU LGPLv3
 	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header rowß
 	; Output parameter: none
@@ -86,14 +83,3 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 	$aDiskList = $aDisks
 	$aPrtitionList =  $aPartitions
 EndFunc   ;==>_GetDiskInfoFromWmi
-
-
-
-; Example Usage
-;------------------
-Local $aOutputDisks
-Local $aOutputPartitions
-_GetDiskInfoFromWmi($aOutputDisks, $aOutputPartitions, 1)
-
-_ArrayDisplay($aOutputDisks, "Disks")
-_ArrayDisplay($aOutputPartitions,  "Partitons")
