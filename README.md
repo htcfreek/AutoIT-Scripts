@@ -1,4 +1,3 @@
-  
 <a href="https://github.com/htcfreek/autoit-scripts"><img src="https://img.shields.io/github/release/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/releases/latest"><img src="https://img.shields.io/github/downloads/htcfreek/autoit-scripts/total?label=Downloads" /></a> <a href="LICENSE.md"><img src="https://img.shields.io/github/license/htcfreek/autoit-scripts" /></a>
 
 
@@ -13,7 +12,7 @@ This repository contains useful AutoIT-Scripts.
 ```
 /src/*                        :   Directory including the AutoIt-Scripts files.
 /src/Readme.txt               :   Readme.txt which will be included in release.
- ```
+```
 
 ## Download
 Download the files form [here](http://github.com/htcfreek/AutoIT-Scripts/release/latest).
@@ -31,6 +30,5 @@ This repository includes scripts (and other files) that where created while my d
 All named product and company names are trademarks (™) or registered (®) trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.
 
 ## License
-Copyright (c) 2021 htcfreek (Heiko)<br />
-This Repository is licensed to you under the  LGPLv3 license.<br />
+This Repository is licensed to you under the GNU LGPLv3 license.<br />
 See the [LICENSE](LICENSE.md) file in the project root for more information.

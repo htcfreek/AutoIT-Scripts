@@ -1,4 +1,4 @@
-﻿# Copyright (c) 2021 htcfreek (Heiko)
+﻿# This file is licensed under th GNU LGPL v3 license.
 # See the LICENSE file in the project root for more information.
 
 # Name: CreateReleaseFile.ps1
@@ -32,9 +32,14 @@ Param(
 
 
 # Create Zip
-if (-Not (Test-Path -Path "$($RepoDir)$($SrcDir)" -ErrorAction SilentlyContinue) -AND -NOT (Test-Path -Path "$($RepoDir)$($ReleaseDir)" -ErrorAction SilentlyContinue)) {
-    Write-Error "Source path and or release folder not available."
+if (-Not (Test-Path -Path "$($RepoDir)$($SrcDir)" -ErrorAction SilentlyContinue)) {
+    Write-Error "Source path not available."
     Break
+}
+
+if (-Not (Test-Path -Path "$($RepoDir)$($ReleaseDir)" -ErrorAction SilentlyContinue)) {
+    Write-Host "Creating release dir..."
+    New-Item -Path "$($RepoDir)$($ReleaseDir)" -Type Directory | Out-Null
 }
 
 if (Test-Path -Path "$($RepoDir)$($ReleaseDir)\$($OutFileName)" -ErrorAction SilentlyContinue) {
@@ -42,11 +47,13 @@ if (Test-Path -Path "$($RepoDir)$($ReleaseDir)\$($OutFileName)" -ErrorAction Sil
     Break
 }
 
+Write-Host "Creating zip file..."
 Compress-Archive -Path $CompressFiles -DestinationPath "$($RepoDir)$($ReleaseDir)\$($OutFileName)"
 
 
 # Calc. Hash
 if (-Not $NoHashCalculation) {
+    Write-Host "Calculating hash..."
     [String]$hash = (Get-FileHash -Path "$($RepoDir)$($ReleaseDir)\$($OutFileName)" -Algorithm SHA256).Hash
     "$hash *$OutFileName" | Out-File -FilePath $HashFile -Append
 }
