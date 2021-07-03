@@ -1,7 +1,8 @@
-<a href="https://github.com/htcfreek/autoit-scripts"><img src="https://img.shields.io/github/release/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/releases/latest"><img src="https://img.shields.io/github/downloads/htcfreek/autoit-scripts/total?label=Downloads" /></a> <a href="LICENSE.md"><img src="https://img.shields.io/github/license/htcfreek/autoit-scripts" /></a>
+<a href="https://github.com/htcfreek/autoit-scripts/releases/latest"><img src="https://img.shields.io/github/release/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/releases/latest"><img src="https://img.shields.io/github/downloads/htcfreek/autoit-scripts/total?label=Downloads" /></a> <a href="LICENSE.md"><img src="https://img.shields.io/github/license/htcfreek/autoit-scripts" /></a>
 
 
-<img src="https://img.shields.io/github/stars/htcfreek/autoit-scripts" /> <img src="https://img.shields.io/github/watchers/htcfreek/autoit-scripts" /> <img src="https://img.shields.io/github/forks/htcfreek/autoit-scripts" />
+<a href="https://github.com/htcfreek/autoit-scripts/stargazers"><img src="https://img.shields.io/github/stars/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/watchers"><img src="https://img.shields.io/github/watchers/htcfreek/autoit-scripts" /></a> <a href="https://github.com/htcfreek/autoit-scripts/network/members"><img src="https://img.shields.io/github/forks/htcfreek/autoit-scripts" /></a>
+
 
 # AutoIT-Scripts
 
