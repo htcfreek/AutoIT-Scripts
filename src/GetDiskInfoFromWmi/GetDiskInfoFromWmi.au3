@@ -25,6 +25,7 @@ CHANGELOG:
 		Changed: Improved comments
 		Changed: Disk property header renamed: WindowsRunningOnDisk (SystemRoot) -> WindowsRunningOnDisk (SystemDisk)
 		Changed: Partition property header renamed: PartitionIsSystemRoot -> PartitionIsSystemDisk
+		Add: DiskType filter
 		Add: Constants
 		Add: Required includes
 		Add: Error handling
