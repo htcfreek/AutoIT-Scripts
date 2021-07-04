@@ -2,7 +2,6 @@
 ;----------
 #include-once
 #include <Array.au3>
-#include <WinAPIError.au3>
 
 
 
@@ -16,7 +15,7 @@
  Description .........: Get disk and partition informations from WMI.
  Author ..............: htcfreek (Heiko) - https://github.com/htcfreek [original]
  Modified ............: 
- Required includes ...: Array.au3, WinAPIError.au3
+ Required includes ...: Array.au3
  Dll .................:
  ===============================================================================================================================
 
