@@ -1,11 +1,11 @@
 ;GetDiskInfoFromWmi.au3
 
-Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeader = 1)
+Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = 1)
 	; Name: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
 	; Author: htcfreek (Heiko) - https://github.com/htcfreek
-	; Version: 1.2
+	; Version: 1.3
 	; License: GNU LGPLv3
-	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header rows.
+	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header row.
 	; Output parameter: none
 	; Required includes: <Array.au3>
 	
@@ -19,9 +19,9 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 	
 	; Add Array header
 	if ($bAddTableHeader =  1) Then
-		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfacetype" & "||" & "DiskMediatype" & "||" & "DiskSerialnumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemRoot)"
+		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfacetype" & "||" & "DiskMediatype" & "||" & "DiskSerialnumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemDrive)"
 		_ArrayAdd($aDisks, $sDiskHeader, 0, "||")
-		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFilesystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemRoot"
+		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFilesystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemDrive"
 		_ArrayAdd($aPartitions, $sPartitionHeader, 0, "||")
 		$iDiskArrayCount += 1
 		$iPartArrayCount += 1
@@ -53,34 +53,34 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPrtitionList, $bAddTableHeade
 					$aDisks[$iDiskArrayCount][9] = "MBR"
 				EndIf
 				
-				; Get LogicalDiks
+				; Get logical disks
 				Local $oLogicalDisks = $oWmiInstance.ExecQuery("ASSOCIATORS OF {Win32_DiskPartition.DeviceID='" & $oPartition.DeviceID & "'} WHERE AssocClass = Win32_LogicalDiskToPartition")
 				For $oLogicalDisk In $oLogicalDisks
 					; Add logical disk data to array
 					$aPartitions[$iPartArrayCount][6] = $oLogicalDisk.DeviceID
 					$aPartitions[$iPartArrayCount][7] = $oLogicalDisk.VolumeName
 					$aPartitions[$iPartArrayCount][8] = $oLogicalDisk.Filesystem
-					$aPartitions[$iPartArrayCount][9] = $oLogicalDisk.Size ; Value of LogicalDisk.Size is different to Size of DiskPartiton.Size!!
+					$aPartitions[$iPartArrayCount][9] = $oLogicalDisk.Size ; Value of LogicalDisk.Size is different to Size of DiskPartition.Size!!
 					$aPartitions[$iPartArrayCount][10] = ($oLogicalDisk.Size - $oLogicalDisk.FreeSpace)
 					$aPartitions[$iPartArrayCount][11] = $oLogicalDisk.FreeSpace
 					
 					; Detect SystemBootDisk 
-					if $oLogicalDisk.DeviceID = Envget("SystemDrive") Then
+					if $oLogicalDisk.DeviceID = EnvGet("SystemDrive") Then
 						$aDisks[$iDiskArrayCount][11] = True
 						$aPartitions[$iPartArrayCount][12] = True
 					EndIf
 				Next
 				
-				; ArrayCounter + 1
+				; Array counter (Partitions) + 1
 				$iPartArrayCount += 1
 			Next
 			
-			; ArrayCounter + 1
+			; Array counter (Disks) + 1
 			$iDiskArrayCount += 1
 		Next
 	EndIf
 	
 	; Return Data
 	$aDiskList = $aDisks
-	$aPrtitionList =  $aPartitions
+	$aPartitionList =  $aPartitions
 EndFunc   ;==>_GetDiskInfoFromWmi
