@@ -2,6 +2,7 @@
 ;----------
 #include-once
 #include <Array.au3>
+#include <WinAPIError.au3>
 
 
 
@@ -15,7 +16,7 @@
  Description .........: Get disk and partition informations from WMI.
  Author ..............: htcfreek (Heiko) - https://github.com/htcfreek [original]
  Modified ............: 
- Required includes ...: Array.au3
+ Required includes ...: Array.au3, WinAPIError.au3
  Dll .................:
  ===============================================================================================================================
 
@@ -64,6 +65,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 	;						[$bAddTableHeader = $DiskInfoWmi_TableHeader_Yes] = Should array tables have a header row. (Values: 0|1 or $DiskInfoWmi_TableHeader_Yes|$DiskInfoWmi_TableHeader_No)
 	;						[$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
 	; Output parameter ...:	none
+	; On WMI-Error .......: @error = 1
 		
 	
 	; Initialize function wide vars
@@ -134,6 +136,9 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 			; Array counter (Disks) + 1
 			$iDiskArrayCount += 1
 		Next
+	Else
+		; If WMI-Error then set @error
+		SetError(1)
 	EndIf
 	
 	; Return Data
