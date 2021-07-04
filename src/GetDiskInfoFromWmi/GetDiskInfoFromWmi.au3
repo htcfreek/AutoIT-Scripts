@@ -7,7 +7,7 @@
 
 #cs
 ===============================================================================================================================
- Title ...............: _GetDiskInfoFromWmi (GitHub https://github.com/htcfreek/AutoIt-Scripts)
+ Title ...............: _GetDiskInfoFromWmi (GitHub: https://github.com/htcfreek/AutoIt-Scripts)
  Version .............: 1.3
  License .............: GNU LGPLv3
  AutoIt Version ......: 3.3.14.5+
