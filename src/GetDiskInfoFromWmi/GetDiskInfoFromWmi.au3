@@ -62,7 +62,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 	; Name ...............: _GetDiskInfoFromWmi 
 	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
 	; Input parameter ....:	ByRef $aDiskList = Array var for list of disks.
-	;                       ByRef $aPrtitionList = Array var for list of partitions.
+	;                       ByRef $aPartitionList = Array var for list of partitions.
 	;                       [$bAddTableHeader = $DiskInfoWmi_TableHeader_Yes] = Should array tables have a header row. (Values: 0|1 or $DiskInfoWmi_TableHeader_Yes|$DiskInfoWmi_TableHeader_No)
 	;                       [$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
 	; Output parameter ...:	none
