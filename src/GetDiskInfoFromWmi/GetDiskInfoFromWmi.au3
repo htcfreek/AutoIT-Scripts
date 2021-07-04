@@ -44,7 +44,7 @@ CHANGELOG:
 ; Global constants
 ; -----------------
 Global Const $DiskInfoWmi_TableHeader_Yes = 1
-Global Const $DiskInfoWmi_TableHeader_No = 1
+Global Const $DiskInfoWmi_TableHeader_No = 0
 Global Const $DiskInfoWmi_DiskType_All = "%"
 Global Const $DiskInfoWmi_DiskType_External = "External%"
 Global Const $DiskInfoWmi_DiskType_Removable = "Removable%"
