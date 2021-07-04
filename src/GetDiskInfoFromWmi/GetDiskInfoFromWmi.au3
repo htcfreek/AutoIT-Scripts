@@ -87,7 +87,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 	Local $oWmiInstance = ObjGet('winmgmts:\\' & @ComputerName & '\root\cimv2')
 	If (IsObj($oWmiInstance)) And (Not @error) Then
 		; Get Disks
-		Local $oPhysicalDisks = $oWmiInstance.ExecQuery('Select * from Win32_DiskDrive WHERE MediaType like "' & $sFilterDiskType & '"}')
+		Local $oPhysicalDisks = $oWmiInstance.ExecQuery('Select * from Win32_DiskDrive WHERE MediaType like "' & $sFilterDiskType & '"')
 		For $oDisk In $oPhysicalDisks
 			; Add Disk data to Array
 			Local $iDisk = $oDisk.Index
