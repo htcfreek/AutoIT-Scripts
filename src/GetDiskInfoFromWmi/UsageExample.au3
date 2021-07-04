@@ -9,4 +9,4 @@ _GetDiskInfoFromWmi($aOutputDisks, $aOutputPartitions, $DiskInfoWmi_TableHeader_
 If @error Then MSGBOX(16, @ScriptName, "Something goes wrong!")
 
 _ArrayDisplay($aOutputDisks, "Disks")
-_ArrayDisplay($aOutputPartitions,  "Partitions")
+_ArrayDisplay($aOutputPartitions, "Partitions")
