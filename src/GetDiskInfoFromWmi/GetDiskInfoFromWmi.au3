@@ -7,7 +7,7 @@
 
 #cs
 ===============================================================================================================================
- Title ...............: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
+ Title ...............: _GetDiskInfoFromWmi (GitHub https://github.com/htcfreek/AutoIt-Scripts)
  Version .............: 1.3
  License .............: GNU LGPLv3
  AutoIt Version ......: 3.3.14.5+
@@ -57,7 +57,6 @@ Global Const $DiskInfoWmi_DiskType_Unknown = "Unknown%"
 
 ; Function
 ; ---------
-
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = $DiskInfoWmi_TableHeader_Yes, $sFilterDiskType = $DiskInfoWmi_DiskType_All)
 	; Name ...............: _GetDiskInfoFromWmi
 	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
