@@ -1,14 +1,52 @@
-;GetDiskInfoFromWmi.au3
+; Includes
+#include-once
+#include <Array.au3>
+
+#cs
+===============================================================================================================================
+ Title ...............: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
+ Version .............: 1.3
+ License .............: GNU LGPLv3
+ AutoIt Version ......: 3.3.14.5+
+ Language ............: English
+ Description .........: Get disk and partition informations from WMI.
+ Author ..............: htcfreek (Heiko) - https://github.com/htcfreek [original]
+ Modified ............: 
+ Required includes ...: Array.au3
+ Dll .................:
+ ===============================================================================================================================
+
+CHANGELOG:
+	2021-07-04 (v1.3)
+		Fixed: Typos
+		Changed: Improved comments
+		Changed: Disk property header renamed: WindowsRunningOnDisk (SystemRoot) -> WindowsRunningOnDisk (SystemDisk)
+		Changed: Partition property header renamed: PartitionIsSystemRoot -> PartitionIsSystemDisk
+		Add: Constants
+		Add: Required includes
+
+	2021-07-02 (v1.2)
+		Added: Disk properties Manufacturer, Interfacetype, Mediatype, Serialnumber, Status
+		Added: Partition property: Filesystem
+		Changed: Disk property header renamed: SystemIsBootedFromDisk -> WindowsRunningOnDisk (SystemRoot)
+		Changed: Partition property header renamed: SystemIsBootedFromPartition -> PartitionIsSystemRoot
+
+	2021-07-02 (v1.0)
+		Initial release
+
+#ce
+
+
 
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = 1)
-	; Name: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
-	; Author: htcfreek (Heiko) - https://github.com/htcfreek
-	; Version: 1.3
-	; License: GNU LGPLv3
-	; Input parameter: ByRef $aDiskList = Array var for list of disks.; ByRef $aPrtitionList = Array var for list of partitions.; [$bAddTableHeader = 1] = Should array tables have a header row.
-	; Output parameter: none
-	; Required includes: <Array.au3>
-	
+	; Name ...............: _GetDiskInfoFromWmi 
+	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
+	; Input parameter ....:	ByRef $aDiskList = Array var for list of disks.
+	;						ByRef $aPrtitionList = Array var for list of partitions.
+	;						[$bAddTableHeader = 1] = Should array tables have a header row.
+	;						[]
+	; Output parameter ...:	none
+		
 	
 	; Initialize function wide vars
 	Local $aDisks[0][12]
