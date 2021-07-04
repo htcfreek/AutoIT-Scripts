@@ -1,6 +1,9 @@
 ; Includes
+;----------
 #include-once
 #include <Array.au3>
+
+
 
 #cs
 ===============================================================================================================================
@@ -38,13 +41,28 @@ CHANGELOG:
 
 
 
-Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = 1)
+; Global constants
+; -----------------
+Global Const $DiskInfoWmi_TableHeader_Yes = 1
+Global Const $DiskInfoWmi_TableHeader_No = 1
+Global Const $DiskInfoWmi_DiskType_All = "%"
+Global Const $DiskInfoWmi_DiskType_External = "External%"
+Global Const $DiskInfoWmi_DiskType_Removable = "Removable%"
+Global Const $DiskInfoWmi_DiskType_Fixed = "Fixed%"
+Global Const $DiskInfoWmi_DiskType_Unknown = "Unknown%"
+
+
+
+; Function
+; ---------
+
+Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = $DiskInfoWmi_TableHeader_Yes, $sFilterDiskType = $DiskInfoWmi_DiskType_All)
 	; Name ...............: _GetDiskInfoFromWmi 
 	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
 	; Input parameter ....:	ByRef $aDiskList = Array var for list of disks.
 	;						ByRef $aPrtitionList = Array var for list of partitions.
-	;						[$bAddTableHeader = 1] = Should array tables have a header row.
-	;						[]
+	;						[$bAddTableHeader = $DiskInfoWmi_TableHeader_Yes] = Should array tables have a header row. (Values: 0|1 or $DiskInfoWmi_TableHeader_Yes|$DiskInfoWmi_TableHeader_No)
+	;						[$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
 	; Output parameter ...:	none
 		
 	
@@ -69,7 +87,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 	Local $oWmiInstance = ObjGet('winmgmts:\\' & @ComputerName & '\root\cimv2')
 	If (IsObj($oWmiInstance)) And (Not @error) Then
 		; Get Disks
-		Local $oPhysicalDisks = $oWmiInstance.ExecQuery('Select * from Win32_DiskDrive')
+		Local $oPhysicalDisks = $oWmiInstance.ExecQuery('Select * from Win32_DiskDrive WHERE MediaType like "' & $sFilterDiskType & '"}')
 		For $oDisk In $oPhysicalDisks
 			; Add Disk data to Array
 			Local $iDisk = $oDisk.Index
