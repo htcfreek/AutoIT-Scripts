@@ -8,7 +8,7 @@
 #cs
 ===============================================================================================================================
  Title ...............: _GetDiskInfoFromWmi (GitHub: - https://github.com/htcfreek/AutoIt-Scripts)
- Version .............: 1.3
+ Version .............: 1.4
  License .............: GNU LGPLv3
  AutoIt Version ......: 3.3.14.5+
  Language ............: English
@@ -20,6 +20,9 @@
 ===============================================================================================================================
 
 CHANGELOG:
+	2021-07-05 (v1.4)
+		Fixed: Typos in script and example.
+		
 	2021-07-04 (v1.3)
 		Fixed: Typos
 		Changed: Improved comments
