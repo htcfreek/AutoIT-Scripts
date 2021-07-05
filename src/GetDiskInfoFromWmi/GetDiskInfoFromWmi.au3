@@ -14,7 +14,7 @@
  Language ............: English
  Description .........: Get disk and partition informations from WMI.
  Author ..............: htcfreek (Heiko) - https://github.com/htcfreek [original]
- Modified ............: 
+ Modified ............:
  Required includes ...: Array.au3
  Dll .................:
 ===============================================================================================================================
@@ -79,7 +79,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 
 
 	; Add Array header
-	if ($bAddTableHeader = 1) Then
+	If ($bAddTableHeader = 1) Then
 		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfaceType" & "||" & "DiskMediaType" & "||" & "DiskSerialNumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemDrive)"
 		_ArrayAdd($aDisks, $sDiskHeader, 0, "||")
 		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartitionIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFileSystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemDrive"
@@ -108,7 +108,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 				_ArrayAdd($aPartitions, $sNewPart, 0, "||")
 
 				; Set DiskInitStyle
-				if StringRegExp($oPartition.Type, "^GPT.*") Then
+				If StringRegExp($oPartition.Type, "^GPT.*") Then
 					$aDisks[$iDiskArrayCount][9] = "GPT"
 				Else
 					$aDisks[$iDiskArrayCount][9] = "MBR"
@@ -126,7 +126,7 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 					$aPartitions[$iPartArrayCount][11] = $oLogicalDisk.FreeSpace
 
 					; Detect SystemBootDisk
-					if $oLogicalDisk.DeviceID = EnvGet("SystemDrive") Then
+					If $oLogicalDisk.DeviceID = EnvGet("SystemDrive") Then
 						$aDisks[$iDiskArrayCount][11] = True
 						$aPartitions[$iPartArrayCount][12] = True
 					EndIf
