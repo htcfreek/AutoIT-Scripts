@@ -21,23 +21,23 @@
 
 CHANGELOG:
 	2021-07-05 (v1.4)
-		Fix: Typos in script and example.
-		
+		Fixed: Typos in script and example.
+
 	2021-07-04 (v1.3)
-		Fix: Typos
-		Change: Improved comments
-		Change: Disk property header renamed: WindowsRunningOnDisk (SystemRoot) -> WindowsRunningOnDisk (SystemDisk)
-		Change: Partition property header renamed: PartitionIsSystemRoot -> PartitionIsSystemDisk
-		New: DiskType filter
-		New: Constants
-		New: Required includes
-		New: Error handling
+		Fixed: Typos
+		Added: DiskType filter
+		Added: Constants
+		Added: Required includes
+		Added: Error handling
+		Changed: Improved comments
+		Changed: Disk property header renamed: WindowsRunningOnDisk (SystemRoot) -> WindowsRunningOnDisk (SystemDisk)
+		Changed: Partition property header renamed: PartitionIsSystemRoot -> PartitionIsSystemDisk
 
 	2021-07-02 (v1.2)
-		New: Disk properties Manufacturer, InterfaceType, MediaType, SerialNumber, Status
-		New: Partition property: Filesystem
-		Change: Disk property header renamed: SystemIsBootedFromDisk -> WindowsRunningOnDisk (SystemRoot)
-		Change: Partition property header renamed: SystemIsBootedFromPartition -> PartitionIsSystemRoot
+		Added: Disk properties Manufacturer, InterfaceType, MediaType, SerialNumber, Status
+		Added: Partition property: Filesystem
+		Changed: Disk property header renamed: SystemIsBootedFromDisk -> WindowsRunningOnDisk (SystemRoot)
+		Changed: Partition property header renamed: SystemIsBootedFromPartition -> PartitionIsSystemRoot
 
 	2021-07-02 (v1.0)
 		New: Initial release
