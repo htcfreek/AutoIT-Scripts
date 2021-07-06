@@ -6,7 +6,7 @@
 Local $aOutputDisks
 Local $aOutputPartitions
 _GetDiskInfoFromWmi($aOutputDisks, $aOutputPartitions, $DiskInfoWmi_TableHeader_Yes, $DiskInfoWmi_DiskType_Fixed)
-If @error Then MSGBOX(16, @ScriptName, "Something went wrong!")
+If @error Then MsgBox(16, @ScriptName, "Something went wrong!")
 
 _ArrayDisplay($aOutputDisks, "Disks")
 _ArrayDisplay($aOutputPartitions, "Partitions")
