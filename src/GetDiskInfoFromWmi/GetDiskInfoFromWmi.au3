@@ -8,7 +8,7 @@
 #cs
 ===============================================================================================================================
  Title ...............: _GetDiskInfoFromWmi (GitHub: https://github.com/htcfreek/AutoIt-Scripts)
- Version .............: 1.4.1
+ Version .............: 1.4.2
  License .............: GNU LGPLv3
  AutoIt Version ......: 3.3.14.5+
  Language ............: English
@@ -20,6 +20,10 @@
 ===============================================================================================================================
 
 CHANGELOG:
+	2022-08-28 (v1.4.2)
+		Fixed: Build warings for non declared vars $sDiskHeader, $sPartitionHeader (Github#28)
+		Added: New Readme.txt for this script. (Github#29)
+
 	2021-07-06 (v1.4.1)
 		Fixed: Code styling
 
@@ -66,8 +70,8 @@ Global Const $DiskInfoWmi_DiskType_Unknown = "Unknown%"
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = $DiskInfoWmi_TableHeader_Yes, $sFilterDiskType = $DiskInfoWmi_DiskType_All)
 	; Name ...............: _GetDiskInfoFromWmi
 	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
-	; Input parameter ....: ByRef $aDiskList = Array var for list of disks.
-	;                       ByRef $aPartitionList = Array var for list of partitions.
+	; Input parameter ....: ByRef $aDiskList = Array var for list of disks returned.
+	;                       ByRef $aPartitionList = Array var for list of partitions returned.
 	;                       [$bAddTableHeader = $DiskInfoWmi_TableHeader_Yes] = Should array tables have a header row. (Values: 0|1 or $DiskInfoWmi_TableHeader_Yes|$DiskInfoWmi_TableHeader_No)
 	;                       [$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
 	; Output parameter ...: none
@@ -77,15 +81,16 @@ Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHead
 	; Initialize function wide vars
 	Local $aDisks[0][12]
 	Local $aPartitions[0][13]
+
 	Local $iDiskArrayCount = 0 ; Initialize counter to write some disk data later in correct array row.
 	Local $iPartArrayCount = 0 ; Initialize counter to write partition data later in correct array row.
 
 
 	; Add Array header
 	If ($bAddTableHeader = 1) Then
-		$sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfaceType" & "||" & "DiskMediaType" & "||" & "DiskSerialNumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemDrive)"
+		Local $sDiskHeader = "DiskNum" & "||" & "DiskDeviceID" & "||" & "DiskManufacturer" & "||" & "DiskModel" & "||" & "DiskInterfaceType" & "||" & "DiskMediaType" & "||" & "DiskSerialNumber" & "||" & "DiskState" & "||" & "DiskSize" & "||" & "DiskInitType" & "||" & "DiskPartitionCount" & "||" & "WindowsRunningOnDisk (SystemDrive)"
 		_ArrayAdd($aDisks, $sDiskHeader, 0, "||")
-		$sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartitionIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFileSystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemDrive"
+		Local $sPartitionHeader = "DiskNum" & "||" & "PartitionNum" & "||" & "PartitionID" & "||" & "PartitionType" & "||" & "PartitionIsPrimary" & "||" & "PartitionIsBootPartition" & "||" & "PartitionLetter" & "||" & "PartitionLabel" & "||" & "PartitionFileSystem" & "||" & "PartitionSizeTotal" & "||" & "PartitionSizeUsed" & "||" & "PartitionSizeFree" & "||" & "PartitionIsSystemDrive"
 		_ArrayAdd($aPartitions, $sPartitionHeader, 0, "||")
 		$iDiskArrayCount += 1
 		$iPartArrayCount += 1
