@@ -21,7 +21,7 @@
 
 CHANGELOG:
 	2022-08-28 (v1.4.2)
-		Fixed: Build warings for non declared vars $sDiskHeader, $sPartitionHeader (Github#28)
+		Fixed: Build warnings for non declared variables $sDiskHeader and $sPartitionHeader. (Github#28)
 		Added: New Readme.txt for this script. (Github#29)
 
 	2021-07-06 (v1.4.1)
@@ -70,10 +70,10 @@ Global Const $DiskInfoWmi_DiskType_Unknown = "Unknown%"
 Func _GetDiskInfoFromWmi(ByRef $aDiskList, ByRef $aPartitionList, $bAddTableHeader = $DiskInfoWmi_TableHeader_Yes, $sFilterDiskType = $DiskInfoWmi_DiskType_All)
 	; Name ...............: _GetDiskInfoFromWmi
 	; Author .............: htcfreek (Heiko) - https://github.com/htcfreek
-	; Input parameter ....: ByRef $aDiskList = Array var for list of disks returned.
-	;                       ByRef $aPartitionList = Array var for list of partitions returned.
+	; Input parameter ....: ByRef $aDiskList = Array variable for list of disks returned.
+	;                       ByRef $aPartitionList = Array variable for list of partitions returned.
 	;                       [$bAddTableHeader = $DiskInfoWmi_TableHeader_Yes] = Should array tables have a header row. (Values: 0|1 or $DiskInfoWmi_TableHeader_Yes|$DiskInfoWmi_TableHeader_No)
-	;                       [$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
+	;                       [$sFilterDiskType = $DiskInfoWmi_DiskType_All] = Which type of disk should be included in the result. (Values: $DiskInfoWmi_DiskType_All|$DiskInfoWmi_DiskType_External|$DiskInfoWmi_DiskType_Removable|$DiskInfoWmi_DiskType_Fixed|$DiskInfoWmi_DiskType_Unknown)
 	; Output parameter ...: none
 	; On WMI-Error .......: @error = 1
 
