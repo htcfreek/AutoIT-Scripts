@@ -6,7 +6,10 @@
 This repository contains useful AutoIT-Scripts.
 
 Scripts:
-/src/GetDiskInfoFromWmi	: Function to read the disk information form WMI.
+/src/GetDiskInfoFromWmi         : Function to read the disk information form WMI.
+/src/GetInstalledPrinterFromWmi : Function to get a list of installed printers for the current user as array or string.
+/src/StatusSplashWindow         : Shows a custom status window with progress, description and some nice control features.
+/src/WaitForAppWindow           : Function to wait for a new window opened by a specified process.
 
 Download:
 Download the files form this page: http://github.com/htcfreek/AutoIT-Scripts/release/latest
