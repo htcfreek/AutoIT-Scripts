@@ -74,4 +74,3 @@ Func _GetInstalledPrinterFromWmi($sReturnType = $InstalledPrinterWmi_ReturnType_
 		SetError(1)
 	EndIf
 EndFunc   ;==>_GetInstalledPrinterFromWmi
-

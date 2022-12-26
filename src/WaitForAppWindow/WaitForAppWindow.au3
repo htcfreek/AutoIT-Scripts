@@ -86,4 +86,3 @@ Func _WaitForAppWindow($sAppExePath, $iTimeout = 0)
 
 	Return $bReturnCode
 EndFunc   ;==>_WaitAppWindow
-
