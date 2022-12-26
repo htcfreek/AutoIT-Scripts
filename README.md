@@ -10,6 +10,7 @@ This repository contains useful AutoIT-Scripts.
 ### Scripts:
 ```
 /src/GetDiskInfoFromWmi	: Function to read the disk information form WMI.
+/src/WaitForAppWindow   : Function to wait for a new window opened by a specified process.
 ```
 
 ## Download
