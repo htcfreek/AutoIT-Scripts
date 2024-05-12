@@ -13,7 +13,8 @@ assignees: ''
 
 ## Version information
 <!--Please type the versions here.-->
-- Simple LAPS GUI:
+- Script:
+- Script version:
 - Operating System:
 
 ## 📋 Steps to reproduce
